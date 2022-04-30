@@ -63,9 +63,9 @@ public class GreedyPlayer implements Player
 	    		  board.move(i, 3-id); 
 	              scoreKeep[i] = calcScore (board, 3-id);
 	              board.unmove(i, 3-id);
-	                   if (scoreKeep[i]>bestScore) { //if score is larger than the max score, make that value equal to the max score
-	                       bestScore=scoreKeep[i];
-	                        col = i; 
+	              if (scoreKeep[i]>bestScore) { //if score is larger than the max score, make that value equal to the max score
+	                  bestScore=scoreKeep[i];
+	                  col = i; 
 	                    }
 	                  }
 	                }
