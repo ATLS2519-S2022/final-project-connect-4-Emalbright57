@@ -21,18 +21,29 @@ public class GreedyPlayer implements Player
 	    int id;
 	    int cols;
 
-	    @Override
+	    /* @retrun name for the computer player 
+	     */
 	    public String name() {
 	        return "Greedy Boi";
 	    }
 
-	    @Override
+	    /*@para id- player
+	     * @para msesPerMove - depth of board
+	     * @para rows - how many rows in the board
+	     * @para cols - how many columns in the board
+	     */
 	    public void init(int id, int msecPerMove, int rows, int cols) {
 	    	this.id = id; //your id is id, opponents is 3-id
 	    	this.cols = cols;
 	    }
 
-	    @Override
+	    /*@para board- connect 4 board
+	     * @para oppMoveCol - number of moves the oponent made
+	     * @para arb - communicates between player and board
+	     * 
+	     * @retrun best score - best possible score for the player
+	     *  
+	     */
 	    public void calcMove(
 	        Connect4Board board, int oppMoveCol, Arbitrator arb) 
 	        throws TimeUpException {
@@ -43,22 +54,20 @@ public class GreedyPlayer implements Player
 	       
 	        // Make a random valid move.
 	        //find maximum of relative scores for all possible moves
-	       int col = 0;
+	      int col = 0;
 	      int [] scoreKeep = new int[7]; //holds temporary scores for evaluating best options
 	      int bestScore = -1000; //holds largest value for the array
-	                // Find maximum score from all possible moves
-	                for (int i=0 ; i<cols ; i++) { 
-	                
-	                if (board.isValidMove(i)) {
-	                    board.move(i, 3-id); 
-	                    scoreKeep[i] = calcScore (board, 3-id);
-	                    board.unmove(i, 3-id);
-	                   
-	                    if (scoreKeep[i]>bestScore) { //if score is larger than the max score, make that value equal to the max score
-	                    bestScore=scoreKeep[i];
-	                    col = i; 
+	      // Find maximum score from all possible moves
+	      for (int i=0 ; i<cols ; i++) { 
+	    	  if (board.isValidMove(i)) {
+	    		  board.move(i, 3-id); 
+	              scoreKeep[i] = calcScore (board, 3-id);
+	              board.unmove(i, 3-id);
+	                   if (scoreKeep[i]>bestScore) { //if score is larger than the max score, make that value equal to the max score
+	                       bestScore=scoreKeep[i];
+	                        col = i; 
 	                    }
-	                }
+	                  }
 	                }
 	                arb.setMove(col);
 	            }

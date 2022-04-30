@@ -59,10 +59,8 @@ public class MinimaxPlayer implements Player {
         // while there's time left and maxDepth <= number of moves remaining
         while(!arb.isTimeUp() && maxDepth <= board.numEmptyCells()) {
 	        int bestScore = -1000;
-            
         	int [] scoreKeep = new int[7]; //array that stores temporary scores to eventually see which score is the highest
-            // Find maximum score for all possible moves 
-            
+            // Find maximum score for all possible moves  
             for (int i = 0 ; i < cols ; i++) { //iterates through each column
             	if (board.isValidMove(i)) { //if move can actually be made          		
     	        	board.move(i, id);     	     
